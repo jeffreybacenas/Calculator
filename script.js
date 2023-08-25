@@ -1,10 +1,10 @@
-const view = document.querySelector(".view");
-const buttons = document.querySelectorAll("button");
-const specialChars = ["%", "*", "/", "-", "+", "="];
+const result = document.querySelector(".result");
+const digits = document.querySelectorAll("button");
+const symbols = ["%", "*", "/", "-", "+", "="];
 let output = "";
 
 const calculate = (btnValue) => {
-  view.focus();
+  result.focus();
   if (btnValue === "=" && output !== "") {
     output = eval(output.replace("%", "/100"));
   } else if (btnValue === "AC") {
@@ -12,12 +12,12 @@ const calculate = (btnValue) => {
   } else if (btnValue === "DEL") {
     output = output.toString().slice(0, -1);
   } else {
-    if (output === "" && specialChars.includes(btnValue)) return;
+    if (output === "" && symbols.includes(btnValue)) return;
     output += btnValue;
   }
-  view.value = output;
+  result.value = output;
 };
 
-buttons.forEach((button) => {
+digits.forEach((button) => {
   button.addEventListener("click", (e) => calculate(e.target.dataset.value));
 });
